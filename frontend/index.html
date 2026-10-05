@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkinAI | AI Skin Image Analysis</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="container nav-content">
+
+            <a href="#" class="logo">
+                <span class="logo-icon">✦</span>
+                Skin<span>AI</span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#analysis">Analysis</a>
+                <a href="#about">About</a>
+            </nav>
+
+            <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <span id="themeIcon">☀</span>
+            </button>
+            <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <aside class="mobile-sidebar" id="mobileSidebar">
+
+            <div class="sidebar-header">
+
+                <a href="#" class="logo">
+                    <span class="logo-icon">✦</span>
+                    Skin<span>AI</span>
+                </a>
+
+                <button type="button" class="sidebar-close" id="sidebarClose" aria-label="Close menu">
+                    ×
+                </button>
+
+            </div>
+
+            <nav class="sidebar-links">
+
+                <a href="#home">
+                    <span>01</span>
+                    Home
+                </a>
+
+                <a href="#analysis">
+                    <span>02</span>
+                    Analysis
+                </a>
+
+                <a href="#about">
+                    <span>03</span>
+                    About
+                </a>
+
+            </nav>
+
+            <div class="sidebar-footer">
+                <span class="status-dot"></span>
+                AI System Online
+            </div>
+
+        </aside>
+    </header>
+
+
+    <!-- Hero Section -->
+    <main>
+
+        <section id="home" class="hero">
+
+            <div class="container hero-content">
+
+                <div class="hero-badge">
+                    <span class="status-dot"></span>
+                    AI-Powered Computer Vision
+                </div>
+
+                <h1>
+                    Intelligent
+                    <span>Skin Image</span>
+                    Analysis
+                </h1>
+
+                <p class="hero-description">
+                    Upload a skin image and explore an AI-generated
+                    classification with confidence and visual explanation.
+                </p>
+
+                <a href="#analysis" class="hero-button">
+                    Start Analysis
+                    <span>→</span>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- Analysis Section -->
+        <section id="analysis" class="analysis-section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        IMAGE ANALYSIS
+                    </span>
+
+                    <h2>
+                        Analyze your image
+                    </h2>
+
+                    <p>
+                        Upload an image to explore the SkinAI model.
+                    </p>
+
+                </div>
+
+
+                <div class="analysis-grid">
+
+                    <!-- Upload Card -->
+                    <div class="upload-card">
+
+                        <div class="upload-header">
+
+                            <div>
+                                <span class="card-label">
+                                    INPUT IMAGE
+                                </span>
+
+                                <h3>
+                                    Upload Image
+                                </h3>
+                            </div>
+
+                            <div class="upload-icon">
+                                ↑
+                            </div>
+
+                        </div>
+
+
+                        <div class="drop-zone" id="dropZone">
+
+                            <input type="file" id="imageInput" accept="image/png,image/jpeg,image/jpg,image/webp"
+                                hidden>
+
+                            <div class="drop-content" id="dropContent">
+
+                                <div class="upload-symbol">
+                                    ↑
+                                </div>
+
+                                <h4>
+                                    Drop your image here
+                                </h4>
+
+                                <p>
+                                    or click to browse your files
+                                </p>
+
+                                <span class="file-info">
+                                    JPG, PNG or WEBP
+                                </span>
+
+                            </div>
+
+
+                            <div class="preview-container" id="previewContainer" hidden>
+
+                                <img id="imagePreview" src="" alt="Selected skin image">
+
+                                <button type="button" class="remove-image" id="removeImage">
+                                    ×
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <button type="button" class="analyze-button" id="analyzeButton" disabled>
+                            <span>Analyze Image</span>
+                            <span>→</span>
+                        </button>
+
+                    </div>
+
+
+                    <!-- Result Card -->
+                    <div class="result-card">
+
+                        <div class="result-header">
+
+                            <div>
+                                <span class="card-label">
+                                    MODEL OUTPUT
+                                </span>
+
+                                <h3>
+                                    Analysis Result
+                                </h3>
+                            </div>
+
+                            <div class="ai-status">
+                                AI
+                            </div>
+
+                        </div>
+
+
+                        <div class="result-placeholder" id="resultPlaceholder">
+
+                            <div class="result-icon">
+                                ✦
+                            </div>
+
+                            <h4>
+                                Waiting for image
+                            </h4>
+
+                            <p>
+                                Upload an image to see the
+                                model prediction here.
+                            </p>
+
+                        </div>
+
+
+                        <div class="result-content" id="resultContent" hidden>
+
+                            <div class="prediction-box">
+
+                                <span class="result-label">
+                                    PREDICTED CLASS
+                                </span>
+
+                                <h4 id="predictionClass">
+                                    —
+                                </h4>
+
+                            </div>
+
+
+                            <div class="confidence-section">
+
+                                <div class="confidence-header">
+
+                                    <span>
+                                        Confidence
+                                    </span>
+
+                                    <strong id="confidenceValue">
+                                        0%
+                                    </strong>
+
+                                </div>
+
+                                <div class="confidence-bar">
+
+                                    <div class="confidence-progress" id="confidenceProgress"></div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="prediction-status" id="predictionStatus">
+                                Awaiting analysis
+                            </div>
+
+                            <div class="top-predictions" id="topPredictions" hidden>
+                                <div class="top-predictions-header">
+                                    <span>Top Predictions</span>
+                                    <span>Confidence</span>
+                                </div>
+
+                                <div id="topPredictionsList"></div>
+                            </div>
+                            <div class="explanation-box">
+
+                                <span class="result-label">
+                                    MODEL EXPLANATION
+                                </span>
+
+                                <p>
+                                    Grad-CAM visualization will
+                                    appear here after analysis.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+
+            <div class="container about-content">
+
+                <span class="section-label">
+                    ABOUT SKINAI
+                </span>
+
+                <h2>
+                    Deep Learning meets
+                    Computer Vision
+                </h2>
+
+                <p>
+                    SkinAI is an educational and research-oriented
+                    computer vision project designed to explore
+                    image classification using deep learning,
+                    transfer learning and model explainability.
+                </p>
+
+                <div class="feature-grid">
+
+                    <div class="feature-card">
+                        <span>01</span>
+                        <h3>Deep Learning</h3>
+                        <p>
+                            Image classification using a
+                            convolutional neural network.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <span>02</span>
+                        <h3>Confidence</h3>
+                        <p>
+                            Prediction confidence is presented
+                            alongside the model output.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <span>03</span>
+                        <h3>Explainability</h3>
+                        <p>
+                            Grad-CAM helps visualize areas
+                            influencing model predictions.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <p>
+                © 2026 SkinAI
+            </p>
+
+            <p>
+                Educational & Research Project
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="/static/js/script.js"></script>
+
+</body>
+
+</html>
