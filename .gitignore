@@ -8,7 +8,7 @@ data/raw/
 data/processed/
 
 *.h5
-*.keras
+
 
 .env
 .env.*
